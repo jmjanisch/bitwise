@@ -1,21 +1,17 @@
-package example;
-import com.sun.net.httpserver.HttpServer;
-//import com.sun.jersey.api.container.httpserver.HttpServerFactory;
-import java.io.IOException;
+package coverageCalculator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
  * Created by Justin Janisch on 3/25/2016.
  */
-// The Java class will be hosted at the URI path "/helloworld"
-@Path("/helloworld")
-public class HelloWorld {
+// The Java class will be hosted at the URI path "/coverageCalculator"
+@Path("/coverageCalculator")
+public class CoverageCalculator {
     // The Java method will process HTTP GET requests
     @GET
     @Path("/{name}")// The Java method will produce content identified by the MIME Media type "text/plain"
@@ -27,7 +23,7 @@ public class HelloWorld {
     }
 
     @GET
-    @Path("helloHtml/{name}")
+    @Path("coverageCalculatorHtml/{name}")
     @Produces("text/html")
     public String getHelloHtml(@PathParam("name") String name) {
         String message = "<html><title>Hello" + name + "</title><body><h1>Hello " + name + "</h1></body></html>";
@@ -37,7 +33,7 @@ public class HelloWorld {
 
 
     @GET
-    @Path("helloJson/{name}")
+    @Path("coverageCalculatorJson/{name}")
     @Produces("application/json")
     public String getHelloJson(@PathParam("name") String name) {
         return "{[name:" + name + "]}";
