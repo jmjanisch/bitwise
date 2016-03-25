@@ -36,9 +36,7 @@ public class HolidayRequest {
 
     @Override
     public String toString() {
-        return "HolidayRequest{" +
-                "holidayRequests=" + holidayRequests +
-                ", employeeId=" + employeeId +
-                '}';
+        return new StringBuffer(" EmployeeId : ").append(this.employeeId)
+                .append(" Holiday Requests : ").append(this.holidayRequests).toString();
     }
 }
