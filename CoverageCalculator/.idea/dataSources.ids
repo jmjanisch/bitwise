@@ -25,7 +25,7 @@
       </column>
       <column id="7" parent="2" name="holiday_year">
         <mandatory>1</mandatory>
-        <data-type>date</data-type>
+        <data-type>varchar(50)</data-type>
       </column>
       <column id="8" parent="2" name="holiday_off">
         <data-type>varchar(50)</data-type>

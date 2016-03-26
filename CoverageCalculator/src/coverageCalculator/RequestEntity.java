@@ -11,7 +11,7 @@ public class RequestEntity {
     private int empoloyeeId;
     private String firstName;
     private String lastName;
-    private Date holidayYear;
+    private String holidayYear;
     private String preferredHolidayOff;
     private String preferredHolidayWork1;
     private String preferredHolidayWork2;
@@ -20,7 +20,7 @@ public class RequestEntity {
 
     }
 
-    public RequestEntity(int requestId, int empoloyeeId, String firstName, String lastName, Date holidayYear, String preferredHolidayOff, String preferredHolidayWork1, String preferredHolidayWork2) {
+    public RequestEntity(int requestId, int empoloyeeId, String firstName, String lastName, String holidayYear, String preferredHolidayOff, String preferredHolidayWork1, String preferredHolidayWork2) {
         this.requestId = requestId;
         this.empoloyeeId = empoloyeeId;
         this.firstName = firstName;
@@ -63,11 +63,11 @@ public class RequestEntity {
         this.lastName = lastName;
     }
 
-    public Date getHolidayYear() {
+    public String getHolidayYear() {
         return holidayYear;
     }
 
-    public void setHolidayYear(Date holidayYear) {
+    public void setHolidayYear(String holidayYear) {
         this.holidayYear = holidayYear;
     }
 

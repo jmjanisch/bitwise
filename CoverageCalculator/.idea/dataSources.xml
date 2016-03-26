@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="482165790">
+  <component name="DataSourceManagerImpl" format="xml" hash="1487650666">
     <data-source source="LOCAL" name="MySQL - holiday_coverage@localhost" uuid="ff4604dc-a602-410d-8532-6adfa6d27e2e">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

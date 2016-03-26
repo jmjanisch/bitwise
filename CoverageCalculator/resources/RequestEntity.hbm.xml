@@ -21,7 +21,7 @@
         <property name="lastName" column="employee_last_name"
                   type="string"/>
         <property name="holidayYear" column="holiday_year"
-                  type="java.util.Date"/>
+                  type="string"/>
         <property name="preferredHolidayOff" column="holiday_off"
                   type="string"/>
         <property name="preferredHolidayWork1" column="prefer_work_1"

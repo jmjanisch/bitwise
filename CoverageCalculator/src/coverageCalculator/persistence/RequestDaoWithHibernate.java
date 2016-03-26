@@ -10,8 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Justin Janisch on 3/26/2016.
@@ -21,10 +20,32 @@ public class RequestDaoWithHibernate {
     private final Logger log = Logger.getLogger(this.getClass());
 
     public List<RequestEntity> getAllRequests() {
-        List<RequestEntity> allRequests = new ArrayList<RequestEntity>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
-        session.createCriteria(RequestEntity.class).list();
-        return allRequests;
+        List<RequestEntity> allHolidayRequests = new ArrayList<RequestEntity>();
+        Transaction dbTransaction = null;
+
+        try {
+            dbTransaction = session.beginTransaction();
+            List requestsInDB = session.createQuery("FROM RequestEntity").list();
+
+            for (Iterator iterator = requestsInDB.iterator(); iterator.hasNext();) {
+
+                RequestEntity holidayRequest = (RequestEntity) iterator.next();
+                allHolidayRequests.add(holidayRequest);
+            }
+
+            dbTransaction.commit();
+
+        } catch (HibernateException error) {
+            if (dbTransaction!=null) dbTransaction.rollback();
+            error.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        log.info("Number of holiday requests: " + allHolidayRequests.size());
+
+        return allHolidayRequests;
     }
 
     public void updateRequest(RequestEntity requestEntity) {
