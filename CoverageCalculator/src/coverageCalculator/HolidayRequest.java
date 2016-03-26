@@ -1,9 +1,11 @@
 package coverageCalculator;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 /**
  * Created by Justin Janisch on 3/25/2016.
  */
+@XmlRootElement
 public class HolidayRequest {
 
     private List<String> holidayRequests;
@@ -13,9 +15,9 @@ public class HolidayRequest {
 
     }
 
-    public HolidayRequest(List<String> holidayRequests, int employeeId) {
-        this.holidayRequests = holidayRequests;
+    public HolidayRequest(int employeeId, List<String> holidayRequests) {
         this.employeeId = employeeId;
+        this.holidayRequests = holidayRequests;
     }
 
     public List<String> getHolidayRequests() {
@@ -39,4 +41,13 @@ public class HolidayRequest {
         return new StringBuffer(" EmployeeId : ").append(this.employeeId)
                 .append(" Holiday Requests : ").append(this.holidayRequests).toString();
     }
+
+    /*
+    @Override
+    public String toString() {
+        return "HolidayRequest{" +
+                "holidayRequests=" + holidayRequests +
+                ", employeeId=" + employeeId +
+                '}';
+    }*/
 }

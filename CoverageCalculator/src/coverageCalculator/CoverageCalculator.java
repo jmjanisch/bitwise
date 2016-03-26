@@ -3,6 +3,7 @@ package coverageCalculator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.*;
 
 /**
  * Created by Justin Janisch on 3/25/2016.
@@ -37,12 +38,27 @@ public class CoverageCalculator {
         return "{[name:" + name + "]}";
     }
 
+    @GET
+    @Path("getHolidayRequest/{employeeId}")
+    @Produces("application/json")
+    public HolidayRequest showRequest( @PathParam("employeeId") int employeeId) {
+        List<String> holidays = new ArrayList<String>();
+        holidays.add("New Years");
+        holidays.add("Thanksgiving");
+        holidays.add("Christmas");
+
+        HolidayRequest holidayRequest = new HolidayRequest(employeeId, holidays);
+
+        return holidayRequest;
+
+    }
+
     @POST
     @Path("processHolidayRequest")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("text/html")
-    public Response processHolidayRequest() {
-        String response = "Holiday Request off: ";
+    public Response processHolidayRequest(HolidayRequest holidayRequest) {
+        String response = holidayRequest.toString();
         return Response.status(200).entity(response).build();
     }
 
