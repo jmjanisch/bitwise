@@ -10,7 +10,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">student</property>
 
-        <mapping resource="EmployeeRequest.hbm.xml" />
+        <mapping resource="RequestEntity.hbm.xml" />
         <mapping class="coverageCalculator.RequestEntity" />
 
     </session-factory>
