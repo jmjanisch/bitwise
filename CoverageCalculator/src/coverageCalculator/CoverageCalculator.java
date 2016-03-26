@@ -58,7 +58,7 @@ public class CoverageCalculator {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("text/html")
     public Response processHolidayRequest(HolidayRequest holidayRequest) {
-        String response = holidayRequest.toString();
+        String response = "POST Response: " + holidayRequest.toString();
         return Response.status(200).entity(response).build();
     }
 
