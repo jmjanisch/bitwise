@@ -9,6 +9,9 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Jersey-2.2" />
+          <element id="library" level="application" name="log4j" />
+          <element id="library" level="project" name="Hibernate 4.2.2-4.2.2" />
+          <element id="library" level="project" name="geronimo-osgi-locator-1.0" />
         </element>
       </element>
     </root>

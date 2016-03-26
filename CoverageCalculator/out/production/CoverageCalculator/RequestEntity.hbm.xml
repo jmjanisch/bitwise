@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="coverageCalculator.RequestEntity" table="employee_request">
+        <meta attribute="class-description">
+            This class contains the department detail.
+        </meta>
+
+        <!--Add id for the key -->
+        <id name="requestId" type="int" column="request_id">
+            <generator class="native"/>
+        </id>
+        <!--Add a property for all other instance variables/columns-->
+        <property name="empoloyeeId" column="employee_id"
+                  type="int"/>
+        <property name="firstName" column="employee_first_name"
+                  type="string"/>
+        <property name="lastName" column="employee_last_name"
+                  type="string"/>
+        <property name="holidayYear" column="holiday_year"
+                  type="java.util.Date"/>
+        <property name="preferredHolidayOff" column="holiday_off"
+                  type="string"/>
+        <property name="preferredHolidayWork1" column="prefer_work_1"
+                  type="string"/>
+        <property name="preferredHolidayWork2" column="prefer_work_2"
+                  type="string"/>
+
+    </class>
+</hibernate-mapping>
