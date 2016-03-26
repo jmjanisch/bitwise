@@ -4,7 +4,7 @@ Database:  holiday_coverage
 Table:  employee_request
 
 Fields:
-	reqeust_id (Int) Primary Key
+	request_id (Int) Primary Key
 	employee_id (Int)  Not Null
 	employee_first_name (VarChar50)  Null Ok
 	employee_last_name (VarChar50)  Null Ok
