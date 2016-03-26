@@ -42,12 +42,4 @@ public class HolidayRequest {
                 .append(" Holiday Requests : ").append(this.holidayRequests).toString();
     }
 
-    /*
-    @Override
-    public String toString() {
-        return "HolidayRequest{" +
-                "holidayRequests=" + holidayRequests +
-                ", employeeId=" + employeeId +
-                '}';
-    }*/
 }

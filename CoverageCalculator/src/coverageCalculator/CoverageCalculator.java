@@ -58,8 +58,19 @@ public class CoverageCalculator {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("text/html")
     public Response processHolidayRequest(HolidayRequest holidayRequest) {
+        ValidateInput validator = new ValidateInput();
+        int statusCode = 200;
         String response = "POST Response: " + holidayRequest.toString();
-        return Response.status(200).entity(response).build();
+
+        validator.parseJson();
+
+       /*for (HolidayRequest holidayRequest : holidayRequests) {
+            System.out.println(holidayRequest.toString());
+            response += "Number of requests +1 "; //holidayRequest.toString();
+       }*/
+
+
+        return Response.status(statusCode).entity(response).build();
     }
 
 

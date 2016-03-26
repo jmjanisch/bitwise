@@ -1,0 +1,14 @@
+Coverage Calculator DB Structure
+
+Database:  holiday_coverage
+Table:  employee_request
+
+Fields:
+	reqeust_id (Int) Primary Key
+	employee_id (Int)  Not Null
+	employee_first_name (VarChar50)  Null Ok
+	employee_last_name (VarChar50)  Null Ok
+	holiday_year (Date)  Not Null
+	holiday_off (VarChar50)  Null Ok
+	prefer_work_1 (VarChar50)  Null Ok
+	prefer_work_2 (VarChar50)  Null Ok
