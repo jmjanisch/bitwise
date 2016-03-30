@@ -1,24 +1,26 @@
-Project Plan
+#Project Plan
+###Due week 12
 
-week 1:
-create project
-create request object
-create project plan
-put maven into project
-
-week 2:
-work on parsing request with jersey
-work on logic for sending response
-parsing response with jersey
+##week 1:
+*create project structure
+* look at putting maven into project
+* create request object
+* create project plan
 
 
-week 3:
-deploy on openshift
+##week 2:
+* work on parsing request with jersey
+* work on logic for sending response
+* parsing response with jersey
+
+
+##week 3:
+* deploy on openshift
 Presentation?
 
 
 
-Deliverables
+##Deliverables
 	-Problem Statement  Done
 	-project objectives  Done (in problem statement)
 	-project plan  inprogress
