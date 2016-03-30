@@ -6,13 +6,13 @@
 * look at putting maven into project
 * create request object
 * create project plan
-
+* do journal entry
 
 ##week 2:
 * work on parsing request with jersey
 * work on logic for sending response
 * parsing response with jersey
-
+* do journal entry
 
 ##week 3:
 * deploy on openshift
