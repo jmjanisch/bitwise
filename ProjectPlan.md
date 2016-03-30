@@ -9,17 +9,19 @@ put maven into project
 week 2:
 work on parsing request with jersey
 work on logic for sending response
+parsing response with jersey
 
 
 week 3:
 deploy on openshift
+Presentation?
 
 
 
 Deliverables
-	-Problem Statement
-	-project objectives
-	-project plan
+	-Problem Statement  Done
+	-project objectives  Done (in problem statement)
+	-project plan  inprogress
 	-Journal/blog
 	-source code
 	-documentation
