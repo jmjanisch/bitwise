@@ -2,16 +2,16 @@
 ###Due week 12
 
 ##week 1:
-*create project structure
+* create project structure
 * look at putting maven into project
 * create request object
 * create project plan
 * do journal entry
 
 ##week 2:
-* work on parsing request with jersey
+* work on parsing request with jackson
 * work on logic for sending response
-* parsing response with jersey
+* parsing response with jackson
 * do journal entry
 
 ##week 3:
