@@ -1,24 +1,24 @@
 #Project Plan
 ###Due week 12
 
-##week 1:
+##Week 1 (week 9):
 * create project structure
 * look at putting maven into project
 * create request object
 * create project plan
 * do journal entry
 
-##week 2:
+##Week 2 (week 10):
 * work on parsing request with jackson
 * work on logic for sending response
 * parsing response with jackson
 * do journal entry
 * work on validation of request
 
-##week 3:
+##Week 3 (week 11):
 * deploy on openshift
 * write up user documentation
-Presentation?
+* create presentation
 
 
 
