@@ -13,9 +13,11 @@
 * work on logic for sending response
 * parsing response with jackson
 * do journal entry
+* work on validation of request
 
 ##week 3:
 * deploy on openshift
+* write up user documentation
 Presentation?
 
 
