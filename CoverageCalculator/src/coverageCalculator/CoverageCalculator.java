@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
+import javax.jms.Message;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -94,8 +95,8 @@ public class CoverageCalculator {
     @GET
     @Path("/Json/{holidays:\\d")
     @Produces("text/plain")
-    //@Consumes(MediaType.APPLICATION_JSON)
-    public String getRequestOffScheduel(@PathParam("holidays") String holidays) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String getRequestOffScheduel(Message holidays) {
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = holidays;

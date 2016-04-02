@@ -1,6 +1,10 @@
 #Steps to Take in JSON and return JSON
 
-##1. Convert JSON to Java Object
+##1. Consume JSON
+###CoverageCalculator
+	take the json from the URI
+
+##2. Convert JSON to Java Object
 ###ProcessRequest class 
 	takes in the JSON and parses
 ###Request class
@@ -11,10 +15,7 @@
 	validate class
 
 ##3. Holiday Logic
-	getFirstHoliday
-	getSecondHoliday
-	getLastHoliday
-	
+	go through holidays submitted and the holiday choices of the employees
 	creates the ResponseEntity object that has the holidays and employees
 	
 ##4. Convert Response Object to JSON
