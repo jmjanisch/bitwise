@@ -1,5 +1,3 @@
-{holidayRequest : {"employeeId": 101, "holidayRequests": ["New Years Day", "July 4th", "Labor Day"]}}
-
 This is what I am thinking of the request
 {holidays : ["New Years", 
 			 "Martin Luther King Day",
