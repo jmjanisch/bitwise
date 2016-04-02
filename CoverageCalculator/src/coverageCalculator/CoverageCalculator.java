@@ -6,11 +6,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Created by Justin Janisch on 3/25/2016.
@@ -29,7 +40,7 @@ public class CoverageCalculator {
     }
 
     @GET
-    @Path("coverageCalculatorHtml/{name}")
+    @Path("/coverageCalculatorHtml/{name}")
     @Produces("text/html")
     public String getHelloHtml(@PathParam("name") String name) {
         String message = "<html><title>Hello" + name + "</title><body><h1>Hello " + name + "</h1></body></html>";
@@ -39,14 +50,14 @@ public class CoverageCalculator {
 
 
     @GET
-    @Path("coverageCalculatorJson/{holidayRequests}")
+    @Path("/coverageCalculatorJson/{holidayRequests}")
     @Produces("application/json")
     public String getRequestOffJson(@PathParam("holidayRequests") String name) {
         return "{[name:" + name + "]}";
     }
 
     @GET
-    @Path("getHolidayRequest/{employeeId}")
+    @Path("/getHolidayRequest/{employeeId}")
     @Produces("application/json")
     public HolidayRequest showRequest( @PathParam("employeeId") int employeeId) {
         List<String> holidays = new ArrayList<String>();
@@ -61,7 +72,7 @@ public class CoverageCalculator {
     }
 
     @POST
-    @Path("processHolidayRequest")
+    @Path("/processHolidayRequest")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("text/html")
     public Response processHolidayRequest(HolidayRequest holidayRequest) {
@@ -80,12 +91,44 @@ public class CoverageCalculator {
         return Response.status(statusCode).entity(response).build();
     }
 
-/*
     @GET
+    @Path("/Json/{holidays:\\d")
+    @Produces("text/plain")
+    //@Consumes(MediaType.APPLICATION_JSON)
+    public String getRequestOffScheduel(@PathParam("holidays") String holidays) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = holidays;
+
+
+        try {
+
+            // Convert JSON string to Object
+            Request request = mapper.readValue(jsonInString, Request.class);
+            System.out.println(request);
+
+            //Pretty print
+            String prettyStaff1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
+            System.out.println(prettyStaff1);
+
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return jsonInString;
+    }
+
+
+    /*@GET
     @Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
     @Produces("application/json")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String getRequestOffScheduel(@PathParam("request") String holidayRequest) {
+    public String getRequestOffScheduel(String holidayRequest) {
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = holidayRequest;
