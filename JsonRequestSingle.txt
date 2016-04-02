@@ -14,3 +14,15 @@ employees : [
 				{"empid" : 104, "holidayChoice" : [2,1,6]}
 			]
 }
+
+Response
+{response : [
+				{"New Years" : 105},
+				{"Martin Luther King Day" : 102},
+				{"Memorial" : 107},
+				{"Fourth of July" : 101},
+				{"Labor Day" : 106},
+				{"Thanksgiving" : 108},
+				{"Christmas" : 103}
+			]
+}
