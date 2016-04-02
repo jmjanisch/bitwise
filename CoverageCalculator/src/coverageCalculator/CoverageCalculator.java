@@ -1,8 +1,14 @@
 package coverageCalculator;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -74,5 +80,34 @@ public class CoverageCalculator {
     }
 
 
+    @GET
+    @Path("coverageCalculatorJson/{holidays: [('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
+    @Produces("application/json")
+    public String getRequestOffScheduel(@PathParam("{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+}") String holidayRequest) {
 
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = holidayRequest;
+
+
+        try {
+
+            // Convert JSON string to Object
+            Request request = mapper.readValue(jsonInString, Request.class);
+            System.out.println(request);
+
+            //Pretty print
+            String prettyStaff1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
+            System.out.println(prettyStaff1);
+
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return jsonInString;
+    }
 }
