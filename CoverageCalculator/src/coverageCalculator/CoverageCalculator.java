@@ -3,6 +3,7 @@ package coverageCalculator;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -79,11 +80,12 @@ public class CoverageCalculator {
         return Response.status(statusCode).entity(response).build();
     }
 
-
+/*
     @GET
-    @Path("coverageCalculatorJson/{holidays: [('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
+    @Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
     @Produces("application/json")
-    public String getRequestOffScheduel(@PathParam("{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+}") String holidayRequest) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String getRequestOffScheduel(@PathParam("request") String holidayRequest) {
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = holidayRequest;
@@ -109,5 +111,5 @@ public class CoverageCalculator {
 
 
         return jsonInString;
-    }
+    }*/
 }

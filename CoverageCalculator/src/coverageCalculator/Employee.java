@@ -70,6 +70,20 @@ public class Employee {
         this.holidayChoice = holidayChoice;
     }
 
+
+    public int getFristHolidayChoice() {
+        return holidayChoice.get(1);
+    }
+
+    public int getSecoundHolidayChoice() {
+        return holidayChoice.get(2);
+    }
+
+    public int getLastHolidayChoide() {
+        return holidayChoice.get(0);
+    }
+
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
