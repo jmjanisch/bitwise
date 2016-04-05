@@ -91,7 +91,7 @@ public class CoverageCalculator {
 
         return Response.status(statusCode).entity(response).build();
     }
-
+/*
     @GET
     @Path("/Json/{holidays:\\d")
     @Produces("text/plain")
@@ -125,7 +125,7 @@ public class CoverageCalculator {
     }
 
 
-    /*@GET
+    @GET
     @Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
     @Produces("application/json")
     @Consumes(MediaType.APPLICATION_JSON)
