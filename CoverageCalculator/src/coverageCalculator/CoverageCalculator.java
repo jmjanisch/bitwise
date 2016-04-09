@@ -92,6 +92,7 @@ public class CoverageCalculator {
         return Response.status(statusCode).entity(response).build();
     }
 
+    /*
     @GET
     @Path("/Json/{holidays:\\d")
     @Produces("text/plain")
@@ -123,13 +124,14 @@ public class CoverageCalculator {
 
         return jsonInString;
     }
+*/
 
-
-    /*@GET
-    @Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
+    @GET
+    //@Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
+    @Path("Json/{sentRequest}")
     @Produces("application/json")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String getRequestOffScheduel(String holidayRequest) {
+    public String getRequestOffScheduel(@PathParam("sentRequest") String holidayRequest) {
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = holidayRequest;
@@ -155,5 +157,5 @@ public class CoverageCalculator {
 
 
         return jsonInString;
-    }*/
+    }
 }
