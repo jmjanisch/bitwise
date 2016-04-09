@@ -4,6 +4,8 @@ import java.sql.Date;
 
 /**
  * Created by Justin Janisch on 3/26/2016.
+ *
+ *  Do not know if we need this class-Lora
  */
 public class RequestEntity {
 

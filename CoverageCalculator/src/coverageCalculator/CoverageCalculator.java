@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
-
-import javax.jms.Message;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -91,15 +89,15 @@ public class CoverageCalculator {
 
         return Response.status(statusCode).entity(response).build();
     }
-/*
+
     @GET
-    @Path("/Json/{holidays:\\d")
+    @Path("/Json/{request}")
     @Produces("text/plain")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String getRequestOffScheduel(Message holidays) {
+    public String getRequestOffScheduel(@PathParam("request") String sentRequest) {
 
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = holidays;
+        String jsonInString = sentRequestequest;
 
 
         try {
@@ -123,7 +121,7 @@ public class CoverageCalculator {
 
         return jsonInString;
     }
-
+/*
 
     @GET
     @Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")

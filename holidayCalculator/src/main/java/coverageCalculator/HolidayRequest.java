@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.*;
 /**
  * Created by Justin Janisch on 3/25/2016.
+ *
+ * dont know if we need this class-Lora
  */
 @XmlRootElement
 public class HolidayRequest {
