@@ -91,8 +91,12 @@ public class CoverageCalculator {
 
         return Response.status(statusCode).entity(response).build();
     }
+<<<<<<< HEAD
 
     /*
+=======
+/*
+>>>>>>> 0fd8792f67518cd1370000770172ba647d886a71
     @GET
     @Path("/Json/{holidays:\\d")
     @Produces("text/plain")
@@ -126,9 +130,15 @@ public class CoverageCalculator {
     }
 */
 
+<<<<<<< HEAD
     @GET
     //@Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
     @Path("Json/{sentRequest}")
+=======
+
+    @GET
+    @Path("Json/{holidays:[('[a-zA-Z] +')+,.+],employees:[({'empid':[0-9]+,'holidayChoice':[[0-9]+,[0-9]+,[0-9]+]})+.+")
+>>>>>>> 0fd8792f67518cd1370000770172ba647d886a71
     @Produces("application/json")
     @Consumes(MediaType.APPLICATION_JSON)
     public String getRequestOffScheduel(@PathParam("sentRequest") String holidayRequest) {
