@@ -28,3 +28,6 @@ Response
 
 regex
 {holidays:\[(\"\S+\s\S+\")+,.+\],employees:\[({\"empid\":[0-9]+,\"holidayChoice\":\[[0-9]+,[0-9]+,[0-9]+\]})+.+
+
+
+{"holidays":["NewYears","MartinLutherKingDay","4th"],"employees":[{"empid":103,"holidayChoice":[1,2,3]},{"empid":106,"holidayChoice":[2,1,3]},{"empid":104,"holidayChoice":[2,1,3]}]}

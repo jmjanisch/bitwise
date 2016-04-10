@@ -12,7 +12,9 @@ public class ValidateInput {
 
     public boolean parseJson(String sentRequest) {
 
-        String pattern = "\\{\\\"holidays\\\":\\[(\\\"\\S+\\s\\S+\\\")+,.+\\],\\\"employees\\\":\\[(\\{\\\"empid\\\":[0-9]+,\\\"holidayChoice\\\":\\[[0-9]+,[0-9]+,[0-9]+\\]\\})+.+";
+        System.out.println("In validate method");
+
+        String pattern = "\\{\\\"holidays\\\":\\[(\\\"\\S+\\\")+,.+\\],\\\"employees\\\":\\[(\\{\\\"empid\\\":[0-9]+,\\\"holidayChoice\\\":\\[[0-9]+,[0-9]+,[0-9]+\\]\\})+.+";
 
         if (Pattern.matches(sentRequest, pattern)) {
             return true;

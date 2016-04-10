@@ -3,26 +3,17 @@ package coverageCalculator;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-
-import javax.jms.Message;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Created by Justin Janisch on 3/25/2016.
@@ -49,6 +40,10 @@ public class CoverageCalculator {
         return message;
     }
 
+/*
+
+ Dont need
+
 
     @GET
     @Path("/coverageCalculatorJson/{holidayRequests}")
@@ -72,6 +67,9 @@ public class CoverageCalculator {
 
     }
 
+
+
+     Dont need
     @POST
     @Path("/processHolidayRequest")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -81,7 +79,7 @@ public class CoverageCalculator {
         int statusCode = 200;
         String response = "POST Response: " + holidayRequest.toString();
 
-        validator.parseJson();
+        validator.parseJson(holidayRequest);
 
        /*for (HolidayRequest holidayRequest : holidayRequests) {
             System.out.println(holidayRequest.toString());
@@ -89,12 +87,17 @@ public class CoverageCalculator {
        }*/
 
 
-        return Response.status(statusCode).entity(response).build();
-    }
+        //return Response.status(statusCode).entity(response).build();
+    //}
+
 
     /*
         url: http://tomcat-lorab.rhcloud.com/holidayCalculator/coverageCalculator/Json/{lora}
         send in the request
+        cant have any spaces in json
+
+        This takes in the request from the user and checks the structure of the request and if correct sends back
+        employees assigned to the holidays
      */
     @GET
     @Path("Json/{sentRequest}")
@@ -104,26 +107,36 @@ public class CoverageCalculator {
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = holidayRequest;
-
+        HashMap<String,Integer> assignedHolidays = new HashMap<String,Integer>();
 
         try {
 
-            // Convert JSON string to Object
-            //do we need? use as string the whole time?
-            Request request = mapper.readValue(jsonInString, Request.class);
-            System.out.println(request);
-
             //run validation did they send in the proper structure
             ValidateInput validate = new ValidateInput();
-            validate.parseJson(jsonInString);
+            if (validate.parseJson(jsonInString)) {
 
-            //run logic for holiday choice if proper json was recieved
+                // Convert JSON string to Object
+                //do we need? use as string the whole time?
+                Request request = mapper.readValue(jsonInString, Request.class);
+                System.out.println(request);
 
-            //return holiday schedule to screen
+                //run logic for holiday choice proper json was received
+                ProcessRequest process = new ProcessRequest();
+                assignedHolidays = process.assignHolidays(request);
+
+                //create the response for the screen
+
+
+            } else {
+                //the request sent by user was not of proper form return error
+                jsonInString = "The request was not in the correct format please check and send again";
+
+            }
+
 
             //Pretty print
-            String prettyStaff1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
-            System.out.println(prettyStaff1);
+            //String prettyStaff1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
+            //System.out.println(prettyStaff1);
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
