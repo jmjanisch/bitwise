@@ -109,10 +109,13 @@ public class CoverageCalculator {
         try {
 
             // Convert JSON string to Object
+            //do we need? use as string the whole time?
             Request request = mapper.readValue(jsonInString, Request.class);
             System.out.println(request);
 
             //run validation did they send in the proper structure
+            ValidateInput validate = new ValidateInput();
+            validate.parseJson(jsonInString);
 
             //run logic for holiday choice if proper json was recieved
 
