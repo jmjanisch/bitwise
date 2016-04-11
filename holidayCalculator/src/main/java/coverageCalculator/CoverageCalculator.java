@@ -106,17 +106,16 @@ public class CoverageCalculator {
     public String getRequestOffSchedule(@PathParam("sentRequest") String holidayRequest) {
 
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = holidayRequest;
+        String jsonInString = "The request was not in the correct format please check and send again";
         HashMap<String,Integer> assignedHolidays = new HashMap<String,Integer>();
 
         try {
 
             //run validation did they send in the proper structure
             ValidateInput validate = new ValidateInput();
-            if (validate.parseJson(jsonInString)) {
+            if (validate.parseJson(holidayRequest)) {
 
                 // Convert JSON string to Object
-                //do we need? use as string the whole time?
                 Request request = mapper.readValue(jsonInString, Request.class);
                 System.out.println(request);
 
@@ -125,6 +124,8 @@ public class CoverageCalculator {
                 assignedHolidays = process.assignHolidays(request);
 
                 //create the response for the screen
+                CreateResponse response = new CreateResponse();
+                jsonInString = response.run(assignedHolidays);
 
 
             } else {
