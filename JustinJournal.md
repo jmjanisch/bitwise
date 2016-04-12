@@ -8,7 +8,7 @@
 ##Week 2
 * Setup project in IntelliJ
 * Configure Log4J
-* Configure Hibernage
+* Configure Hibernate
 * Configure JUnit for testing
 * Setup basic web service structure
 * Setup database and seeded with holiday information
@@ -16,5 +16,6 @@
 
 ## Week 3
 * Added git ignore file and cleaned up project errors.
+* Attempt to implement Jersey :(
 
 ## Week 4
