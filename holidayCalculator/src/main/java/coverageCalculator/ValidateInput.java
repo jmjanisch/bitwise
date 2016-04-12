@@ -1,5 +1,7 @@
 package coverageCalculator;
 
+import org.apache.log4j.Logger;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -10,13 +12,16 @@ import java.util.regex.Pattern;
  */
 public class ValidateInput {
 
+    static final Logger logger = Logger.getLogger(CoverageCalculator.class);
+
     public boolean parseJson(String sentRequest) {
 
-        System.out.println("In validate method");
+        logger.info("In validate method");
 
         String pattern = "\\{\\\"holidays\\\":\\[(\\\"\\S+\\\")+,.+\\],\\\"employees\\\":\\[(\\{\\\"empid\\\":[0-9]+,\\\"holidayChoice\\\":\\[[0-9]+,[0-9]+,[0-9]+\\]\\})+.+";
 
         if (Pattern.matches(sentRequest, pattern)) {
+            logger.info("in patter if");
             return true;
         } else {
             return false;

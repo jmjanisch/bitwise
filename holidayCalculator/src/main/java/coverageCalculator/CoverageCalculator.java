@@ -3,6 +3,8 @@ package coverageCalculator;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -105,9 +107,11 @@ public class CoverageCalculator {
     @Consumes(MediaType.APPLICATION_JSON)
     public String getRequestOffSchedule(@PathParam("sentRequest") String holidayRequest) {
 
+        final Logger logger = Logger.getLogger(CoverageCalculator.class);
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = "The request was not in the correct format please check and send again";
         HashMap<String,Integer> assignedHolidays = new HashMap<String,Integer>();
+        logger.info("sent request from user: " + holidayRequest);
 
         try {
 
@@ -117,7 +121,7 @@ public class CoverageCalculator {
 
                 // Convert JSON string to Object
                 Request request = mapper.readValue(jsonInString, Request.class);
-                System.out.println(request);
+                logger.info("transfomred request: " + request);
 
                 //run logic for holiday choice proper json was received
                 ProcessRequest process = new ProcessRequest();
@@ -126,7 +130,7 @@ public class CoverageCalculator {
                 //create the response for the screen
                 CreateResponse response = new CreateResponse();
                 jsonInString = response.run(assignedHolidays);
-
+                logger.info("response: " + jsonInString);
 
             } else {
                 //the request sent by user was not of proper form return error
@@ -146,7 +150,6 @@ public class CoverageCalculator {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         return jsonInString;
     }
