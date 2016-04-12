@@ -1,15 +1,18 @@
 package coverageCalculator;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import coverageCalculator.entity.HolidayResponse;
+import coverageCalculator.mapper.HolidayResponseToJSON;
+import org.apache.log4j.Logger;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -19,25 +22,38 @@ import javax.ws.rs.Produces;
  * Created by Justin Janisch on 3/25/2016.
  */
 // The Java class will be hosted at the URI path "/coverageCalculator"
-@Path("/coverageCalculator")
+@Path("/holiday")
 public class CoverageCalculator {
     // The Java method will process HTTP GET requests
     @GET
     @Path("/{name}")// The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/plain")
     public Response getMessage(@PathParam("name") String name) {
-        String output =  "Hello " + name;
+        String output = "Hello " + name;
+        HolidayResponseToJSON mapper = new HolidayResponseToJSON();
+        Logger logger = Logger.getLogger(this.getClass());
 
+        // Setup test HolidayResponse Entity to use as a test and write sample response.
+        HolidayResponse testResponse = new HolidayResponse();
+        TreeMap<String, Integer> holidaySchedule = new TreeMap<String, Integer>();
+        holidaySchedule.put("New Years", 105);
+        holidaySchedule.put("Martin Luther King Day", 102);
+        holidaySchedule.put("Memorial Day", 107);
+        holidaySchedule.put("4th of July", 101);
+        holidaySchedule.put("Labor Day", 106);
+        holidaySchedule.put("Thanksgiving", 108);
+        holidaySchedule.put("Christmas", 103);
+        testResponse.setHolidayAssignments(holidaySchedule);
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        try {
+            output = mapper.createJSONFromHolidayResponse(testResponse);
+            logger.info("Output: " + output);
+        } catch (JsonProcessingException error) {
+            error.printStackTrace();
+        }
+        
         return Response.status(200).entity(output).build();
-    }
-
-    @GET
-    @Path("/coverageCalculatorHtml/{name}")
-    @Produces("text/html")
-    public String getHelloHtml(@PathParam("name") String name) {
-        String message = "<html><title>Hello" + name + "</title><body><h1>Hello " + name + "</h1></body></html>";
-
-        return message;
     }
 
 /*
@@ -99,6 +115,10 @@ public class CoverageCalculator {
         This takes in the request from the user and checks the structure of the request and if correct sends back
         employees assigned to the holidays
      */
+
+    /* 4/12/16 @12:30 JJ - Commented out due to Request, ProcessRequest, and CreateResponse Types were erroring out
+                           and not defined.
+
     @GET
     @Path("Json/{sentRequest}")
     @Produces("application/json")
@@ -149,5 +169,5 @@ public class CoverageCalculator {
 
 
         return jsonInString;
-    }
+    }*/
 }
