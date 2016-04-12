@@ -1,17 +1,18 @@
 package coverageCalculator;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import coverageCalculator.entity.HolidayResponse;
+import coverageCalculator.mapper.HolidayResponseToJSON;
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -21,86 +22,50 @@ import javax.ws.rs.Produces;
  * Created by Justin Janisch on 3/25/2016.
  */
 // The Java class will be hosted at the URI path "/coverageCalculator"
-@Path("/coverageCalculator")
+@Path("/holiday")
 public class CoverageCalculator {
     // The Java method will process HTTP GET requests
     @GET
     @Path("/{name}")// The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/plain")
     public Response getMessage(@PathParam("name") String name) {
-        String output =  "Hello " + name;
+        String output = "Hello " + name;
+        HolidayResponseToJSON mapper = new HolidayResponseToJSON();
+        Logger logger = Logger.getLogger(this.getClass());
 
+        // Setup test HolidayResponse Entity to use as a test and write sample response.
+        HolidayResponse testResponse = new HolidayResponse();
+        TreeMap<String, Integer> holidaySchedule = new TreeMap<String, Integer>();
+        holidaySchedule.put("New Years", 105);
+        holidaySchedule.put("Martin Luther King Day", 102);
+        holidaySchedule.put("Memorial Day", 107);
+        holidaySchedule.put("4th of July", 101);
+        holidaySchedule.put("Labor Day", 106);
+        holidaySchedule.put("Thanksgiving", 108);
+        holidaySchedule.put("Christmas", 103);
+        testResponse.setHolidayAssignments(holidaySchedule);
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        try {
+            output = mapper.createJSONFromHolidayResponse(testResponse);
+            logger.info("Output: " + output);
+        } catch (JsonProcessingException error) {
+            error.printStackTrace();
+        }
+        
         return Response.status(200).entity(output).build();
     }
 
-    @GET
-    @Path("/coverageCalculatorHtml/{name}")
-    @Produces("text/html")
-    public String getHelloHtml(@PathParam("name") String name) {
-        String message = "<html><title>Hello" + name + "</title><body><h1>Hello " + name + "</h1></body></html>";
-
-        return message;
-    }
-
-/*
-
- Dont need
-
-
-    @GET
-    @Path("/coverageCalculatorJson/{holidayRequests}")
-    @Produces("application/json")
-    public String getRequestOffJson(@PathParam("holidayRequests") String name) {
-        return "{[name:" + name + "]}";
-    }
-
-    @GET
-    @Path("/getHolidayRequest/{employeeId}")
-    @Produces("application/json")
-    public HolidayRequest showRequest( @PathParam("employeeId") int employeeId) {
-        List<String> holidays = new ArrayList<String>();
-        holidays.add("New Years");
-        holidays.add("Thanksgiving");
-        holidays.add("Christmas");
-
-        HolidayRequest holidayRequest = new HolidayRequest(employeeId, holidays);
-
-        return holidayRequest;
-
-    }
-
-
-
-     Dont need
-    @POST
-    @Path("/processHolidayRequest")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces("text/html")
-    public Response processHolidayRequest(HolidayRequest holidayRequest) {
-        ValidateInput validator = new ValidateInput();
-        int statusCode = 200;
-        String response = "POST Response: " + holidayRequest.toString();
-
-        validator.parseJson(holidayRequest);
-
-       /*for (HolidayRequest holidayRequest : holidayRequests) {
-            System.out.println(holidayRequest.toString());
-            response += "Number of requests +1 "; //holidayRequest.toString();
-       }*/
-
-
-        //return Response.status(statusCode).entity(response).build();
-    //}
-
 
     /*
-        url: http://tomcat-lorab.rhcloud.com/holidayCalculator/coverageCalculator/Json/{lora}
+        url: http://tomcat-lorab.rhcloud.com/holidayCalculator/holiday/Json/{lora}
         send in the request
         cant have any spaces in json
 
         This takes in the request from the user and checks the structure of the request and if correct sends back
         employees assigned to the holidays
      */
+
     @GET
     @Path("Json/{sentRequest}")
     @Produces("application/json")
