@@ -52,7 +52,7 @@ public class CoverageCalculator {
         } catch (JsonProcessingException error) {
             error.printStackTrace();
         }
-        
+
         return Response.status(200).entity(output).build();
     }
 
