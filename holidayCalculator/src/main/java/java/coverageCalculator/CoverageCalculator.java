@@ -9,27 +9,27 @@ import java.coverageCalculator.mapper.HolidayResponseToJSON;
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+
+
 
 /**
  * Created by Justin Janisch on 3/25/2016.
  */
-// The Java class will be hosted at the URI path "/java.coverageCalculator"
+
 @Path("/holiday")
 public class CoverageCalculator {
     // The Java method will process HTTP GET requests
+
     @GET
     @Path("/{name}")// The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/plain")
     public Response getMessage(@PathParam("name") String name) {
         String output = "Hello " + name;
+        /*
         HolidayResponseToJSON mapper = new HolidayResponseToJSON();
         Logger logger = Logger.getLogger(this.getClass());
 
@@ -52,7 +52,7 @@ public class CoverageCalculator {
         } catch (JsonProcessingException error) {
             error.printStackTrace();
         }
-
+        */
         return Response.status(200).entity(output).build();
     }
 
@@ -66,6 +66,8 @@ public class CoverageCalculator {
         employees assigned to the holidays
      */
 
+
+    /*
     @GET
     @Path("Json/{sentRequest}")
     @Produces("application/json")
@@ -99,12 +101,12 @@ public class CoverageCalculator {
                 jsonInString = response.run(assignedHolidays);
                 logger.info("response: " + jsonInString);
 
-            /*} else {
+            //} else {
                 //the request sent by user was not of proper form return error
-                logger.info("User sent the wrong formatted request");
-                jsonInString = "The request was not in the correct format please check and send again";
+            //    logger.info("User sent the wrong formatted request");
+            //    jsonInString = "The request was not in the correct format please check and send again";
 
-            }*/
+            //}
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
@@ -115,5 +117,5 @@ public class CoverageCalculator {
         }
 
         return jsonInString;
-    }
+    }*/
 }
