@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import coverageCalculator.entity.HolidayRequestInput;
 import coverageCalculator.entity.HolidayResponse;
+import coverageCalculator.mapper.HolidayRequestToJavaObject;
 import coverageCalculator.mapper.HolidayResponseToJSON;
 import org.apache.log4j.Logger;
 
@@ -26,10 +28,12 @@ import javax.ws.rs.Produces;
 public class CoverageCalculator {
     // The Java method will process HTTP GET requests
     @GET
-    @Path("/{name}")// The Java method will produce content identified by the MIME Media type "text/plain"
+    @Path("/{input}")// The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/plain")
-    public Response getMessage(@PathParam("name") String name) {
-        String output = "Hello " + name;
+    public Response getMessage(@PathParam("input") String input) {
+        String output = "Hello " + input;
+
+        System.out.println("Output: " + output);
         HolidayResponseToJSON mapper = new HolidayResponseToJSON();
         Logger logger = Logger.getLogger(this.getClass());
 
@@ -52,7 +56,21 @@ public class CoverageCalculator {
         } catch (JsonProcessingException error) {
             error.printStackTrace();
         }
-        
+
+        // SETUP and TEST HolidayRequestToJavaObject
+        HolidayRequestToJavaObject testJsonImport = new HolidayRequestToJavaObject();
+        HolidayRequestInput testJavaObject = new HolidayRequestInput();
+
+        try {
+            testJavaObject = testJsonImport.processHolidayInput();
+            System.out.println("MY JAVA OBJECT: " + testJavaObject.toString());
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+
+
+
+
         return Response.status(200).entity(output).build();
     }
 
