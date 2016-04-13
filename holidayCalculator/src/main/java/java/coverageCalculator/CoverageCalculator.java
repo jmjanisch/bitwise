@@ -86,7 +86,6 @@ public class CoverageCalculator {
             ValidateInput validate = new ValidateInput();
             //if (validate.parseJson(holidayRequest)) {
 
-                //jsonInString = "in validate if";
                 // Convert JSON string to Object
                 Request request = mapper.readValue(holidayRequest, Request.class);
                 logger.info("transfomred request: " + request);
