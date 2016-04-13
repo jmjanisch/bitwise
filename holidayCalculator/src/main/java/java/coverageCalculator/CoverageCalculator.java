@@ -4,8 +4,12 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import coverageCalculator.entity.HolidayRequestInput;
 import java.coverageCalculator.entity.HolidayResponse;
+import coverageCalculator.mapper.HolidayRequestToJavaObject;
 import java.coverageCalculator.mapper.HolidayResponseToJSON;
+
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
@@ -26,10 +30,12 @@ import javax.ws.rs.Produces;
 public class CoverageCalculator {
     // The Java method will process HTTP GET requests
     @GET
-    @Path("/{name}")// The Java method will produce content identified by the MIME Media type "text/plain"
+    @Path("/{input}")// The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/plain")
-    public Response getMessage(@PathParam("name") String name) {
-        String output = "Hello " + name;
+    public Response getMessage(@PathParam("input") String input) {
+        String output = "Hello " + input;
+
+        System.out.println("Output: " + output);
         HolidayResponseToJSON mapper = new HolidayResponseToJSON();
         Logger logger = Logger.getLogger(this.getClass());
 
@@ -53,8 +59,22 @@ public class CoverageCalculator {
             error.printStackTrace();
         }
 
+        // SETUP and TEST HolidayRequestToJavaObject
+        HolidayRequestToJavaObject testJsonImport = new HolidayRequestToJavaObject();
+        HolidayRequestInput testJavaObject = new HolidayRequestInput();
+
+        try {
+            testJavaObject = testJsonImport.processHolidayInput();
+            System.out.println("MY JAVA OBJECT: " + testJavaObject.toString());
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+
         return Response.status(200).entity(output).build();
     }
+
+/*
+
 
 
     /*
@@ -66,6 +86,7 @@ public class CoverageCalculator {
         employees assigned to the holidays
      */
 
+    /*
     @GET
     @Path("Json/{sentRequest}")
     @Produces("application/json")
@@ -99,12 +120,12 @@ public class CoverageCalculator {
                 jsonInString = response.run(assignedHolidays);
                 logger.info("response: " + jsonInString);
 
-            /*} else {
+            } else {
                 //the request sent by user was not of proper form return error
                 logger.info("User sent the wrong formatted request");
                 jsonInString = "The request was not in the correct format please check and send again";
 
-            }*/
+            }
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
@@ -115,5 +136,5 @@ public class CoverageCalculator {
         }
 
         return jsonInString;
-    }
+    }*/
 }
