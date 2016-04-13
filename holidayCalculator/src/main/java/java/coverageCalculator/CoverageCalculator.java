@@ -82,12 +82,13 @@ public class CoverageCalculator {
         try {
 
             //run validation did they send in the proper structure
+            //having issues with pattern.matches error IllegalRepetition
             ValidateInput validate = new ValidateInput();
             //if (validate.parseJson(holidayRequest)) {
 
-                jsonInString = "in validate if";
+                //jsonInString = "in validate if";
                 // Convert JSON string to Object
-                Request request = mapper.readValue(jsonInString, Request.class);
+                Request request = mapper.readValue(holidayRequest, Request.class);
                 logger.info("transfomred request: " + request);
 
                 //run logic for holiday choice proper json was received
