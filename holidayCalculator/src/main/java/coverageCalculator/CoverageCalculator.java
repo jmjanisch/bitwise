@@ -33,7 +33,6 @@ public class CoverageCalculator {
     public Response getMessage(@PathParam("input") String input) {
         String output = "Hello " + input;
 
-        System.out.println("Output: " + output);
         HolidayResponseToJSON mapper = new HolidayResponseToJSON();
         Logger logger = Logger.getLogger(this.getClass());
 
@@ -60,9 +59,10 @@ public class CoverageCalculator {
         // SETUP and TEST HolidayRequestToJavaObject
         HolidayRequestToJavaObject testJsonImport = new HolidayRequestToJavaObject();
         HolidayRequestInput testJavaObject = new HolidayRequestInput();
+        String holidayRequestInput = "{\"holidays\":[\"NewYears\",\"MartinLutherKingDay\",\"4th\"],\"employees\":[{\"empid\":103,\"holidayChoice\":[1,2,3]},{\"empid\":106,\"holidayChoice\":[2,1,3]},{\"empid\":104,\"holidayChoice\":[2,1,3]}]}";
 
         try {
-            testJavaObject = testJsonImport.processHolidayInput();
+            testJavaObject = testJsonImport.processHolidayInput(holidayRequestInput);
             System.out.println("MY JAVA OBJECT: " + testJavaObject.toString());
         } catch (IOException error) {
             error.printStackTrace();

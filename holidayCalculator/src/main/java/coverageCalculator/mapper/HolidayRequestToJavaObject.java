@@ -14,14 +14,10 @@ public class HolidayRequestToJavaObject {
     ObjectMapper mapper = new ObjectMapper();
     Logger logger = Logger.getLogger(this.getClass());
 
-    public HolidayRequestInput processHolidayInput() throws IOException {
+    public HolidayRequestInput processHolidayInput(String input) throws IOException {
         HolidayRequestInput holidayRequest = new HolidayRequestInput();
 
-        String testRequest = "{\"holidays\":[\"NewYears\",\"MartinLutherKingDay\",\"4th\"],\"employees\":[{\"empid\":103,\"holidayChoice\":[1,2,3]},{\"empid\":106,\"holidayChoice\":[2,1,3]},{\"empid\":104,\"holidayChoice\":[2,1,3]}]}";
-
-        System.out.println("Test Request: " + testRequest);
-
-        holidayRequest = mapper.readValue(testRequest, HolidayRequestInput.class);
+        holidayRequest = mapper.readValue(input, HolidayRequestInput.class);
 
         logger.debug(holidayRequest);
 
