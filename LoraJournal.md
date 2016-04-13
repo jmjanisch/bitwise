@@ -14,4 +14,3 @@
 * get validation of json string working
 * write class for logic of assigning employees to holidays
 * get the method working for taking in the json and running through all of the steps to output correct string
-* I am having issus with cacheing either in maven or on openshift.  I make changes and then they do not appear when deployed
