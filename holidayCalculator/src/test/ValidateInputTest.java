@@ -19,7 +19,7 @@ public class ValidateInputTest {
         String request = "{\"holidays\":[\"NewYears\",\"MartinLutherKingDay\",\"MemorialDay\",\"FourthOfJuly\",\"LaborDay\",\"Thanksgiving\",\"Christmas\"],\"employees\":[{\"empid\":103,\"holidayChoice\":[3,2,6]},{\"empid\":106,\"holidayChoice\":[4,2,7]},{\"empid\":104,\"holidayChoice\":[2,1,6]}]}";
 
         //check if the request is in the correct form
-        logger.info("Request: " + request);
+        logger.info(request);
         assertTrue("The patterns do not match", Pattern.matches(requestPattern, request));
     }
 }
