@@ -37,6 +37,15 @@
                     <compilerArgument></compilerArgument>
                 </configuration>
             </plugin>
+            <!-- For Maven Tomcat Plugin -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/CounterWebApp</path>
+                </configuration>
+            </plugin>
         </plugins>
 
     </build>
@@ -100,7 +109,11 @@
             <version>2.7.0</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.7</version>
+        </dependency>
 
     </dependencies>
 

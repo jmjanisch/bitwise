@@ -18,9 +18,10 @@ public class ValidateInput {
 
         logger.info("In validate method");
 
-        String pattern = "\\{\\\"holidays\\\":\\[(\\\"\\S+\\\")+,.+\\],\\\"employees\\\":\\[(\\{\\\"empid\\\":[0-9]+,\\\"holidayChoice\\\":\\[[0-9]+,[0-9]+,[0-9]+\\]\\})+.+";
+        String requestPattern = "\\{\"holidays\":\\[((\"\\S+\").*)+\\],\"employees\":\\[(\\{\"empid\":[0-9]+,\"holidayChoice\":\\[[0-9]+,[0-9]+,[0-9]+\\]\\}.*)+]\\}";
 
-        if (Pattern.matches(sentRequest, pattern)) {
+        //check if the request is in the correct form
+        if (Pattern.matches(sentRequest, requestPattern)) {
             logger.info("in patter if");
             return true;
         } else {

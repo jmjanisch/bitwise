@@ -76,6 +76,7 @@ public class CoverageCalculator {
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = "The request was not in the correct format please check and send again";
         HashMap<String,Integer> assignedHolidays = new HashMap<String,Integer>();
+
         logger.info("sent request from user: " + holidayRequest);
 
         try {
@@ -84,9 +85,10 @@ public class CoverageCalculator {
             ValidateInput validate = new ValidateInput();
             if (validate.parseJson(holidayRequest)) {
 
+                jsonInString = "in validate if";
                 // Convert JSON string to Object
                 Request request = mapper.readValue(jsonInString, Request.class);
-                logger.info("transfomred request: " + request);
+                /*logger.info("transfomred request: " + request);
 
                 //run logic for holiday choice proper json was received
                 ProcessRequest process = new ProcessRequest();
@@ -95,18 +97,14 @@ public class CoverageCalculator {
                 //create the response for the screen
                 CreateResponse response = new CreateResponse();
                 jsonInString = response.run(assignedHolidays);
-                logger.info("response: " + jsonInString);
+                logger.info("response: " + jsonInString);*/
 
             } else {
                 //the request sent by user was not of proper form return error
+                logger.info("User sent the wrong formatted request");
                 jsonInString = "The request was not in the correct format please check and send again";
 
             }
-
-
-            //Pretty print
-            //String prettyStaff1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
-            //System.out.println(prettyStaff1);
 
         } catch (JsonGenerationException e) {
             e.printStackTrace();
