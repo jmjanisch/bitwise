@@ -1,6 +1,4 @@
-package coverageCalculator;
-
-import java.sql.Date;
+package java.coverageCalculator;
 
 /**
  * Created by Justin Janisch on 3/26/2016.

@@ -1,16 +1,4 @@
-package coverageCalculator.persistence;
-
-import coverageCalculator.RequestEntity;
-import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
+package java.coverageCalculator.persistence;
 
 /**
  * Created by Justin Janisch on 3/26/2016.

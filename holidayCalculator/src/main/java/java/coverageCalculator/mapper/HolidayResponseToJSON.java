@@ -1,8 +1,8 @@
-package coverageCalculator.mapper;
+package java.coverageCalculator.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import coverageCalculator.entity.HolidayResponse;
+import java.coverageCalculator.entity.HolidayResponse;
 import org.apache.log4j.Logger;
 
 /**

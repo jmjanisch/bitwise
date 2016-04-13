@@ -1,4 +1,4 @@
-package coverageCalculator.entity;
+package java.coverageCalculator.entity;
 
 import java.util.TreeMap;
 
