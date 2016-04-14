@@ -6,6 +6,8 @@ Currently, Bao is working for UW-Health as an IS analyst. Each week, there is al
 ###Request to send to use HolidayCalculator Webservice
  To use the web service you will need to send a json request that has two objects.  The first object is holiday that is an array of holidays that you want to get staffed by employees.  The other object is an employees object that is an array of json employee objects.  The employee objects require an empid that is an int and a hoiday array that is three elements.  The first element in the array is he holiday they do not want to work.  The next element in the array is the first choice of holiday to work and the 3 element is the second choice of element to work.  The holiday choices are the index of the holiday in the holidays array.  It will look like the example below.
  
+ Send the request to URL: http://tomcat-lorab.rhcloud.com/holidayCalculator/holiday/
+ 
  {"holidays":["NewYears","MartinLutherKingDay","FourthOfJuly"],"employees":[{"empid":103,"holidayChoice":[1,2,3]},{"empid":106,"holidayChoice":[2,1,3]},{"empid":104,"holidayChoice":[2,1,3]}]}
  
 ###Response from Webservice
