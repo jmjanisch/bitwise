@@ -8,7 +8,7 @@ Currently, Bao is working for UW-Health as an IS analyst. Each week, there is al
  
  {"holidays":["NewYears","MartinLutherKingDay","FourthOfJuly"],"employees":[{"empid":103,"holidayChoice":[1,2,3]},{"empid":106,"holidayChoice":[2,1,3]},{"empid":104,"holidayChoice":[2,1,3]}]}
  
- ###Response from Webservice
+###Response from Webservice
 The response will match up an employee to the holiday to work.  It will look like below example.
  
  {response : [{"NewYears":105},{"MartinLutherKing Day":102},{"FourthOfJuly":101}]}
