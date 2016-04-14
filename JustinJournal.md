@@ -19,3 +19,9 @@
 * Attempt to implement Jersey :(
 
 ## Week 4
+* Implement Jackson
+* Create POJO's for Employee, Health Request Input, Webservice Response
+* Build Webservice Response and Test Output
+* Build Jackson implementation of Json request to POJO's and test feature to ensure response is converted properly
+* Add additional logging to entities
+* Troubleshoot issues with deployment to Tomcat
